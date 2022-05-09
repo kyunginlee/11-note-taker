@@ -2,9 +2,9 @@
 const fs = require("fs");
 const path = require('path');
 const express = require("express");
+
 const app = express();
-//start new server to listen to port value 3000
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 // Sets up the Express app route handler to handle data parsing
 app.use(express.urlencoded({ extended: true }));
