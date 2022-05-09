@@ -32,5 +32,16 @@ module.exports = app => {
             updateDb();
         });
 
+        // GET notes.html
+        app.get('/notes', function(req,res) {
+            res.sendFile(path.join(__dirname, "../public/notes.html"));
+        });
+        
+        // GET notes.html -wildcard in all other instances
+        app.get('*', function(req,res) {
+            res.sendFile(path.join(__dirname, "../public/index.html"));
+        });
+
+
     });
 }
