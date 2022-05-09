@@ -6,7 +6,7 @@ const app = express();
 //start new server to listen to port value 3000
 const port = process.env.PORT || 3001;
 
-// Sets up the Express app to handle data parsing
+// Sets up the Express app route handler to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));

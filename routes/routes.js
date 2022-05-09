@@ -17,7 +17,7 @@ module.exports = app => {
         app.post('/api/notes', function(req, res) {
             let newMemo = req.body;
             memo.push(newMemo);
-            updateDb();
+            pushDb();
         });
 
         /// Route HTTP GET requests to the specified path with a specific id
@@ -29,7 +29,7 @@ module.exports = app => {
         // Routes HTTP DELETE requests to the specified path with a specific id
         app.delete('/api/notes/:id', function(req, res) {
             memo.splice(req.params.id, 1);
-            updateDb();
+            pushDb();
         });
 
         // GET notes.html
@@ -42,6 +42,12 @@ module.exports = app => {
             res.sendFile(path.join(__dirname, "../public/index.html"));
         });
 
-
+        //push updates to db json file on add, delete modifications
+        function pushDb() {
+            fs.writeFile('db/db.json',JSON.stringify(memo,'\t'),err => {
+                if (err) throw err;
+                return true;
+            });
+        }
     });
 }
