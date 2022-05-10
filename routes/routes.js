@@ -8,8 +8,7 @@ module.exports = app => {
 
     // File path and callback
     readFileAsync('db/db.json','utf8').then(function(data) {
-        if (err) throw err;
-        const notes = JSON.parse(data);
+        var notes = JSON.parse(data);
 
         // Route HTTP GET requests to the specified path
         app.get('/api/notes', function(req, res) {
