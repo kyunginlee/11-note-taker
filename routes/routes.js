@@ -9,31 +9,31 @@ module.exports = app => {
         var memo = JSON.parse(data);
 
         // Route HTTP GET requests to the specified path
-        app.get('/api/notes', function(req, res) {
+        app.get('/api/memo', function(req, res) {
             res.json(memo);
         });
 
         // Route HTTP POST requests to the specified path
-        app.post('/api/notes', function(req, res) {
+        app.post('/api/memo', function(req, res) {
             let newMemo = req.body;
             memo.push(newMemo);
             pushDb();
         });
 
         /// Route HTTP GET requests to the specified path with a specific id
-        app.get('/api/notes/:id', function(req,res) {
+        app.get('/api/memo/:id', function(req,res) {
             // display json for the memos array indices of the provided id
             res.json(memo[req.params.id]);
         });
 
         // Routes HTTP DELETE requests to the specified path with a specific id
-        app.delete('/api/notes/:id', function(req, res) {
+        app.delete('/api/memo/:id', function(req, res) {
             memo.splice(req.params.id, 1);
             pushDb();
         });
 
         // GET notes.html
-        app.get('/notes', function(req,res) {
+        app.get('/memo', function(req,res) {
             res.sendFile(path.join(__dirname, "../public/notes.html"));
         });
         
