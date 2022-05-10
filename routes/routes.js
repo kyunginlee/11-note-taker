@@ -1,12 +1,15 @@
 const fs = require('fs');
 const path = require('path');
+const util = require('util');
 
 module.exports = app => {
 
+    var readFileAsync = util.promisify(fs.readFile);
+
     // File path and callback
-    fs.readFile('db/db.json','utf8', (err, data) => {
+    readFileAsync('db/db.json','utf8').then(function(data) {
         if (err) throw err;
-        var notes = JSON.parse(data);
+        const notes = JSON.parse(data);
 
         // Route HTTP GET requests to the specified path
         app.get('/api/notes', function(req, res) {
