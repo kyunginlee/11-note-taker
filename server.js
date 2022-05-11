@@ -7,8 +7,9 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Sets up the Express app route handler to handle data parsing
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(__dirname));
 
 require('./routes/routes')(app);
